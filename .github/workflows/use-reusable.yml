@@ -74,7 +74,6 @@ jobs:
   print-deploy-result:
     needs: deploy
     runs-on: ubuntu-latest
-     steps:
+    steps:
       - name: Print deploy output
-        run: echo "${{ needs.deploy.outputs.result }}"  #print the output getting from deploy job 
-    
+        run: echo "${{ needs.deploy.outputs.result }}" #print the output getting from deploy job
