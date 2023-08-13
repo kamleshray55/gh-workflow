@@ -4,7 +4,7 @@ on:
     inputs: # here we are define input for job that can use 
         artifact-name:
           description: The name of the deployable artifact 
-          required: true
+          required: false
           default: dist
           type: string
 
