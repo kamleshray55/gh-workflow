@@ -1,6 +1,6 @@
 name: Resusable Deploy
 on: 
-  workflow_call
+  workflow_call:
     inputs: # here we are define input for job that can use 
         artifact-name:
           description: The name of the deployable artifact 
