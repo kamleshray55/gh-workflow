@@ -1,8 +1,20 @@
 name: Resusable Deploy
-on: workflow_call
+on: 
+  workflow_call
+    inputs: # here we are define input for job that can use 
+        artifact-name:
+          description: The name of the deployable artifact 
+          required: true
+          default: dist
+          type: string
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Code
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ inputs.artifact-name }} #this value will pass from calling workflow
       - name: Output Information
         run: echo "Deploying $ uploading..."
