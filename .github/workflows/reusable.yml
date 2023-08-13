@@ -1,15 +1,21 @@
 name: Resusable Deploy
-on: 
+on:
   workflow_call:
-    inputs: # here we are define input for job that can use 
-        artifact-name:
-          description: The name of the deployable artifact 
-          required: false
-          default: dist
-          type: string
+    inputs: # here we are define input for job that can use
+      artifact-name:
+        description: The name of the deployable artifact
+        required: false
+        default: dist
+        type: string
+    outputs:
+      result:
+        description: "The result of deployment opearation"
+        value: ${{ jobs.deploy.outputs.outcome }} #getting the outputs from job  `step-3`
 
 jobs:
   deploy:
+    outputs: #declare outputs `step-2`
+      outcome: ${{ steps.set-outcome.outputs.setp-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -18,3 +24,6 @@ jobs:
           name: ${{ inputs.artifact-name }} #this value will pass from calling workflow
       - name: Output Information
         run: echo "Deploying $ uploading..."
+      - name: Set result output
+        id: set-outcome
+        run: echo "::set-output name=setp-result::success" #setting output `step-1`
