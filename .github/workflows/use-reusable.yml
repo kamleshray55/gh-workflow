@@ -68,4 +68,5 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable.yml #calling the reusable workflow from here
-
+    with:
+      artifact-name: dist-files #passing input values to reusable-workflow
