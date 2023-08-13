@@ -14,8 +14,8 @@ jobs:
           - node-version: 18
             os: ubuntu-latest
         exclude:
-          - node-version: 12
-            os: windows-latest
+          - node-version: [12]
+            os: [windows-latest, ubuntu-latest]
 
     runs-on: ${{matrix.os}}
     steps:
